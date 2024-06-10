@@ -31,7 +31,7 @@ export const LoginPage = () => {
       
       if (response.status === 200) {
         const token = response.data.token;
-        localStorage.setItem('token', token); // Set token in localStorage
+        localStorage.setItem('token', token);
         navigate("/home");
       } else {
         alert("Error al iniciar sesión");
@@ -81,118 +81,91 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="flex w-full h-screen overflow-hidden">
-      <div className='bg-[#fc6b32] w-[45%] h-auto flex justify-center items-center'>
-        <img className='w-[85%] pt-32' src="carrito.svg" alt="" />
+    <div className="flex w-full h-screen overflow-hidden bg-gray-50">
+      <div className='bg-gradient-to-b from-orange-500 to-red-500 w-[45%] h-auto flex justify-center items-center'>
+        <img className='w-[85%] pt-32' src="carrito.svg" alt="Carrito" />
       </div>
-      <div className="min-h-screen w-full bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-        <div className="relative py-3 sm:max-w-xl sm:mx-auto scale-90 2xl:scale-100">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#fc6b32] to-[#fc6b32]/85 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
-          <div className="relative px-4 py-2 bg-white shadow-lg sm:rounded-3xl p-3 w-[450px] h-[550px]">
-            <div className="max-w-[410px] mx-auto">
-              <section className="gradient-form h-full text-black">
-                <div className="container h-full">
-                  <div className="flex h-full flex-wrap items-center justify-center dark:text-black">
-                    <div className="w-full">
-                      <div className="block rounded-lg">
-                        <div className="g-0 lg:flex lg:flex-wrap">
-                          <div className="px-4 md:px-0 lg:w-full">
-                            <div className="md:mx-6">
-                              <div className="text-center flex flex-col items-center">
-                                <img className="w-48" src={logo} alt="logo" />
-                                <h4 className="mb-4 mt-1 pb-1 text-xl font-semibold">Coordisoft SENA</h4>
-                              </div>
-                              <form onSubmit={handleSubmit}>
-                                <p className="mb-4">Por favor, ingrese a su cuenta</p>
-                                <div className="relative mb-4">
-                                  <input
-                                    type="text"
-                                    className="peer block min-h-[auto] w-full rounded border border-cyan-400 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-                                    id="exampleFormControlInput1"
-                                    placeholder=" "
-                                    value={username}
-                                    onChange={handleUsernameChange}
-                                    onFocus={handleUsernameFocus}
-                                    onBlur={handleUsernameBlur}
-                                    onClick={handleUsernameClick}
-                                  />
-                                  <label
-                                    htmlFor="exampleFormControlInput1"
-                                    className={`pointer-events-none absolute top-0 bg-white left-3 max-w-[90%] mt-1 leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:text-primary ${username || usernameFocused ? 'transform translate-y-[-16px] text-sm text-black' : ''}`}
-                                  >
-                                    Username
-                                  </label>
-                                </div>
-                                <div className="relative mb-4">
-                                  <input
-                                    type={showPassword ? "text" : "password"}
-                                    className="peer block min-h-[auto] w-full rounded border border-cyan-400 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-                                    id="exampleFormControlInput11"
-                                    placeholder=" "
-                                    value={password}
-                                    onChange={handlePasswordChange}
-                                    onFocus={handlePasswordFocus}
-                                    onBlur={handlePasswordBlur}
-                                    onClick={handlePasswordClick}
-                                  />
-                                  <button
-                                    onClick={togglePasswordVisibility}
-                                    type="button"
-                                    className="absolute inset-y-0 right-3 flex items-center"
-                                  >
-                                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                                  </button>
-                                  <label
-                                    htmlFor="exampleFormControlInput11"
-                                    className={`pointer-events-none absolute top-0 bg-white left-3 max-w-[90%] mt-1 leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:text-primary ${password || passwordFocused ? 'transform translate-y-[-16px] text-sm text-black' : ''}`}
-                                  >
-                                    Password
-                                  </label>
-                                </div>
-                                <div className="mb-3 pb-1 pt-1 text-center">
-                                  <button
-                                    onClick={handleSubmit}
-                                    className="mb-3 bg-gradient-to-r from-[#fc6b32] to-[#fc6b32]/85 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-dark-3 transition duration-150 ease-in-out hover:shadow-dark-2 focus:shadow-dark-2 focus:outline-none focus:ring-0 active:shadow-dark-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-                                    type="submit"
-                                  >
-                                    Log in
-                                  </button>
-                                  <a href="#!">¿Has olvidado tu contraseña?</a>
-                                </div>
-                                <div className="flex items-center justify-center w-full pb-6">
-                                  <p className="mb-0 flex">¿No tienes una cuenta?</p>
-                                  <div className="w-full mx-auto flex justify-end">
-                                    <button className="flex items-center bg-white dark:bg-gray-900 border border-gray-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800 dark:text-white hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                                      <svg className="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="800px" height="800px" viewBox="-0.5 0 48 48" version="1.1">
-                                        <title>Google-color</title>
-                                        <desc>Created with Sketch.</desc>
-                                        <defs> </defs>
-                                        <g id="Icons" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-                                          <g id="Color-" transform="translate(-401.000000, -860.000000)">
-                                            <g id="Google" transform="translate(401.000000, 860.000000)">
-                                              <path d="M9.82727273,24 C9.82727273,22.4757333 10.0804318,21.0144 10.5322727,19.6437333 L2.62345455,13.6042667 C1.08206818,16.7338667 0.213636364,20.2602667 0.213636364,24 C0.213636364,27.7365333 1.081,31.2608 2.62025,34.3882667 L10.5247955,28.3370667 C10.0772273,26.9728 9.82727273,25.5168 9.82727273,24" id="Fill-1" fill="#FBBC05"> </path>
-                                              <path d="M23.7136364,10.1333333 C27.025,10.1333333 30.0159091,11.3066667 32.3659091,13.2266667 L39.2022727,6.4 C35.0363636,2.77333333 29.6954545,0.533333333 23.7136364,0.533333333 C14.4268636,0.533333333 6.44540909,5.84426667 2.62345455,13.6042667 L10.5322727,19.6437333 C12.3545909,14.112 17.5491591,10.1333333 23.7136364,10.1333333" id="Fill-2" fill="#EB4335"> </path>
-                                              <path d="M23.7136364,37.8666667 C17.5491591,37.8666667 12.3545909,33.888 10.5322727,28.3562667 L2.62345455,34.3946667 C6.44540909,42.1557333 14.4268636,47.4666667 23.7136364,47.4666667 C29.4455,47.4666667 34.9177955,45.4314667 39.0249545,41.6181333 L31.5177727,35.8144 C29.3995682,37.1488 26.7323182,37.8666667 23.7136364,37.8666667" id="Fill-3" fill="#34A853"> </path>
-                                              <path d="M46.1454545,24 C46.1454545,22.6133333 45.9318182,21.12 45.6113636,19.7333333 L23.7136364,19.7333333 L23.7136364,28.8 L36.3181818,28.8 C35.6879545,31.8912 33.9724545,34.2677333 31.5177727,35.8144 L39.0249545,41.6181333 C43.3393409,37.6138667 46.1454545,31.6490667 46.1454545,24" id="Fill-4" fill="#4285F4"> </path>
-                                            </g>
-                                          </g>
-                                        </g>
-                                      </svg>
-                                      <span>Continue with Google</span>
-                                    </button>
-                                  </div>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
+      <div className="flex flex-col justify-center w-full px-6 py-12 sm:py-24">
+        <div className="relative w-full max-w-md mx-auto bg-white shadow-lg rounded-3xl p-8">
+          <div className="text-center flex flex-col items-center">
+            <img className="w-32 mb-6" src={logo} alt="logo" />
+            <h4 className="mb-4 text-2xl font-semibold">Coordisoft SENA</h4>
+            <p className="mb-6 text-gray-600">Por favor, ingrese a su cuenta</p>
           </div>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-6">
+              <div className="relative">
+                <input
+                  type="text"
+                  className="peer w-full rounded border border-gray-300 bg-white px-3 py-2 placeholder-transparent focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+                  id="username"
+                  placeholder="Username"
+                  value={username}
+                  onChange={handleUsernameChange}
+                  onFocus={handleUsernameFocus}
+                  onBlur={handleUsernameBlur}
+                  onClick={handleUsernameClick}
+                />
+                <label
+                  htmlFor="username"
+                  className={`absolute left-3 -top-2.5 bg-white px-1 text-sm text-gray-600 transition-all ${username || usernameFocused ? 'transform -translate-y-4 text-orange-500' : ''}`}
+                >
+                  Username
+                </label>
+              </div>
+            </div>
+            <div className="mb-6">
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  className="peer w-full rounded border border-gray-300 bg-white px-3 py-2 placeholder-transparent focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+                  id="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                  onFocus={handlePasswordFocus}
+                  onBlur={handlePasswordBlur}
+                  onClick={handlePasswordClick}
+                />
+                <button
+                  onClick={togglePasswordVisibility}
+                  type="button"
+                  className="absolute inset-y-0 right-3 flex items-center"
+                >
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
+                <label
+                  htmlFor="password"
+                  className={`absolute left-3 -top-2.5 bg-white px-1 text-sm text-gray-600 transition-all ${password || passwordFocused ? 'transform -translate-y-4 text-orange-500' : ''}`}
+                >
+                  Password
+                </label>
+              </div>
+            </div>
+            <div className="mb-6">
+              <button
+                className="w-full px-6 py-2.5 rounded bg-orange-500 text-white text-sm font-medium leading-normal shadow-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600"
+                type="submit"
+              >
+                Log in
+              </button>
+            </div>
+            <div className="flex justify-between items-center mb-6">
+              <a href="#!" className="text-sm text-orange-500 hover:underline">¿Has olvidado tu contraseña?</a>
+              <a href="#!" className="text-sm text-orange-500 hover:underline">¿No tienes una cuenta?</a>
+            </div>
+            <div className="flex justify-center">
+              <button className="flex items-center bg-white border border-gray-300 rounded-lg shadow-md px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                <svg className="h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                  <path fill="#4285F4" d="M46.1454545,24 C46.1454545,22.6133333 45.9318182,21.12 45.6113636,19.7333333 L23.7136364,19.7333333 L23.7136364,28.8 L36.3181818,28.8 C35.6879545,31.8912 33.9724545,34.2677333 31.5177727,35.8144 L39.0249545,41.6181333 C43.3393409,37.6138667 46.1454545,31.6490667 46.1454545,24" />
+                  <path fill="#34A853" d="M23.7136364,37.8666667 C17.5491591,37.8666667 12.3545909,33.888 10.5322727,28.3562667 L2.62345455,34.3946667 C6.44540909,42.1557333 14.4268636,47.4666667 23.7136364,47.4666667 C29.4455,47.4666667 34.9177955,45.4314667 39.0249545,41.6181333 L31.5177727,35.8144 C29.3995682,37.1488 26.7323182,37.8666667 23.7136364,37.8666667" />
+                  <path fill="#FBBC05" d="M9.82727273,24 C9.82727273,22.4757333 10.0804318,21.0144 10.5322727,19.6437333 L2.62345455,13.6042667 C1.08206818,16.7338667 0.213636364,20.2602667 0.213636364,24 C0.213636364,27.7365333 1.081,31.2608 2.62025,34.3882667 L10.5247955,28.3370667 C10.0772273,26.9728 9.82727273,25.5168 9.82727273,24" />
+                  <path fill="#EB4335" d="M23.7136364,10.1333333 C27.025,10.1333333 30.0159091,11.3066667 32.3659091,13.2266667 L39.2022727,6.4 C35.0363636,2.77333333 29.6954545,0.533333333 23.7136364,0.533333333 C14.4268636,0.533333333 6.44540909,5.84426667 2.62345455,13.6042667 L10.5322727,19.6437333 C12.3545909,14.112 17.5491591,10.1333333 23.7136364,10.1333333" />
+                </svg>
+                <span>Continue with Google</span>
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

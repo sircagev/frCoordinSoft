@@ -1,11 +1,15 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home, StickyNote, CircleUserRound, Trash2, ArrowLeftRight, Calendar, Settings } from "lucide-react";
-import Sidebar, { SidebarItem } from "./components/Sidebar";
+import { Home, ArrowLeftRight, Settings, CircleUserRound } from "lucide-react";
+import Sidebar, { SidebarItem, SidebarAccordion } from "./components/Sidebar";
 import { LoginPage } from './pages/LoginPage';
 import { ProtectedRoute } from './configs/ProtectedRoute';
 import { Navbar2 } from './components/Navbar';
 import { AreasPage } from './pages/AreasPage';
+import { SedeAreasPage } from './pages/SedeAreasPage';
+import CentrosPage from './pages/CentrosPage';
+import SedesPage from './pages/SedesPage';
+
 
 
 
@@ -76,8 +80,7 @@ export const App = () => {
             </WithSidebar>
           </ProtectedRoute>
         } />
-
-<Route path="/areas" element={
+        <Route path="/areas" element={
           <ProtectedRoute>
             <WithSidebar>
               <Suspense fallback={<div>Loading...</div>}>
@@ -86,7 +89,44 @@ export const App = () => {
             </WithSidebar>
           </ProtectedRoute>
         } />
+
+
+<Route path="/sedeAreas" element={
+          <ProtectedRoute>
+            <WithSidebar>
+              <Suspense fallback={<div>Loading...</div>}>
+                <SedeAreasPage />
+              </Suspense>
+            </WithSidebar>
+          </ProtectedRoute>
+        } />
+
+
+<Route path="/centros" element={
+          <ProtectedRoute>
+            <WithSidebar>
+              <Suspense fallback={<div>Loading...</div>}>
+                <CentrosPage />
+              </Suspense>
+            </WithSidebar>
+          </ProtectedRoute>
+        } />
+
+
+        
+<Route path="/sedes" element={
+          <ProtectedRoute>
+            <WithSidebar>
+              <Suspense fallback={<div>Loading...</div>}>
+                <SedesPage />
+              </Suspense>
+            </WithSidebar>
+          </ProtectedRoute>
+        } />
+
+
       </Routes>
+      
     </BrowserRouter>
   );
 };
@@ -94,27 +134,22 @@ export const App = () => {
 const WithSidebar = ({ children }) => (
   <div className="flex">
     <Sidebar>
-
       <SidebarItem nav="/home" icon={<Home size={20} />} text="Home" />
       <SidebarItem nav="/movimientos" icon={<ArrowLeftRight size={20} />} text="Movimientos" />
-      <SidebarItem nav="/elementos" icon={<Settings size={20} />} text="Elementos"/>
-      <SidebarItem nav="/areas" icon={<Settings size={20} />} text="Areas"/>
-      {/* <SidebarItem nav="/categorias" icon={<Calendar size={20} />} text="Categorias"/> */}
+      <SidebarItem nav="/elementos" icon={<Settings size={20} />} text="Elementos" />
+      <SidebarItem nav="/elementos" icon={<Settings size={20} />} text="Areas" />
       <SidebarItem nav="/usuarios" icon={<CircleUserRound size={20} />} text="Usuarios" />
-      {/* <SidebarItem nav="/centros" icon={<Settings size={20} />} text="Centros"/>
-      <SidebarItem nav="/sedes" icon={<Settings size={20} />} text="Sedes"/>
-      <SidebarItem nav="/sitios" icon={<Settings size={20} />} text="Sitios"/>
-      <SidebarItem nav="/tipo_sitios" icon={<Settings size={20} />} text="Tipos Sitios"/>
- 
-      <SidebarItem nav="/programas" icon={<Settings size={20} />} text="Programas"/>
-      <SidebarItem nav="/fichas" icon={<Settings size={20} />} text="Fichas"/>
-      <SidebarItem nav="/reportes" icon={<Settings size={20} />} text="Reportes"/> */}
+
+      <SidebarAccordion icon={<Settings size={20} />} text="Opciones">
+        <SidebarItem nav="/areas" text="Areas" />
+        <SidebarItem nav="/sedeAreas" text="Sedes Areas" />
+        <SidebarItem nav="/centros" text="Centros" />
+        <SidebarItem nav="/sedes" text="Sedes" />
+      </SidebarAccordion>
     </Sidebar>
-
-
-<div className='w-full bg-white h-screen overflow-auto'>
-  <Navbar2/>
-{children}
-</div>
+    <div className='w-full bg-white h-screen overflow-auto'>
+      <Navbar2 />
+      {children}
+    </div>
   </div>
 );

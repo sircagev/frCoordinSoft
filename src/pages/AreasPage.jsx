@@ -1,7 +1,10 @@
-import React from 'react'
-import { RegisterArea } from '../components/areas/RegisterArea'
-import RegisterAreaSede from '../components/areas/RegisterAreaSede'
-import GlobalTable from '../components/componets_globals/GlobalTable'
+import React from 'react';
+import { RegisterArea } from '../components/areas/RegisterArea';
+import GlobalTable from '../components/componets_globals/GlobalTable';
+import UpdateArea from '../components/areas/UpdateArea';
+import DeleteArea from '../components/areas/DeleteArea'; // Asegúrate de importar correctamente el componente DeleteArea
+import CardComponent from '../components/CardComponent';
+
 
 export const AreasPage = () => {
   const columns = [
@@ -11,35 +14,26 @@ export const AreasPage = () => {
     'date_modified'
   ];
 
-  const columns2 = [
-    'id',
-    'sede_area',
-    'area_AreaSede',
-    'persona_administra',
-    'date_created',
-    'date_modified'
-  ];
+
 
   return (
     <>
-      <main className='w-full p-3 h-screen '>
+      <main className='w-full p-3 h-screen'>
         <div className='my-5 flex flex-col py-5'>
+
+          <CardComponent title="Modulo Areas"  />
           <RegisterArea />
           <GlobalTable 
             columns={columns} 
             dataEndpoint="area/" 
+            updateComponent={UpdateArea} 
+            deleteComponent={DeleteArea} 
           />
         </div>
-        <div className='my-5 flex flex-col py-5'>
-       <RegisterAreaSede />
-       <GlobalTable 
-            columns={columns2} 
-            dataEndpoint="areaSede/" 
-          />
-       </div>
+
       </main>
     </>
-  )
-}
+  );
+};
 
 export default AreasPage;
